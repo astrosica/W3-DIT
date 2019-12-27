@@ -1,3 +1,3 @@
-# DIT photometry of the W3 giant molecular cloud
+# DIT photometry data reduction and calibration
 
-This repository contains my code for reducing the DIT photometric observations of W3.
+This repository contains my code for reducing and calibrating the DIT photometric observations of W3.

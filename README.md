@@ -37,44 +37,33 @@ Note: The "dupe" in several file names does not necessarily mean that they are i
 ## Usage
 
 Requires that images are organized in the following way:
-raw science images: <parent directory>/<date>/<images>/
-bias images: <parent directory>/<date>/<calibration folder>/<images>/
-dark images: <parent directory>/<date>/<calibration folder>/<images>/
-flat images: <parent directory>/<date>/<flat folder>/<images>/
+raw science images: `<parent directory>/<date>/<images>/`
+bias images: `<parent directory>/<date>/<calibration folder>/<images>/`
+dark images: `<parent directory>/<date>/<calibration folder>/<images>/`
+flat images: `<parent directory>/<date>/<flat folder>/<images>/`
 
 Requires that filenames are named in the following way:
-raw science images: objectname_[]-[]-[].fts
-bias images: Bias-[]-[]-[]-.fts
-dark images: Dark-[]-[]-[].fts
-flat images: AutoFlat-[]-[]-[].fts
+raw science images: `objectname_[]-[]-[].fts`
+bias images: `Bias-[]-[]-[]-.fts`
+dark images: `Dark-[]-[]-[].fts`
+flat images: `AutoFlat-[]-[]-[].fts`
 
-The following is done with the raw science images:
-1. dark subtracted and flat fielded
-2. astronometry.net is used to obtain accurate world coordinate system
-3. Source Extractor is used for photometry
-
-Outputs the following directories
-- :
-
-Requires the following header keys in the science images' FITS files:
-- OBJECT
-- FILTER
-- EXPTIME
+Requires that the following  header keys are defined in the science images' FITS files:
+- `OBJECT`
+- `FILTER`
+- `EXPTIME`
 
 Requires the following software:
-    - sextractor
+    - Source Extractor
     - astrometry.net
     
 Requires the following packages: os, re, yaml, docopt, numpy, astropy
 
-Requires the following files:
-    - calibration.py
-    - callastrometry.py
-
 Usage:
-main [options]
+`main [options]`
 
 Options:
+```
   -h, --help           Show this screen.
                        [default: False]
   -l, --logoutput      Generate log outputs.
@@ -105,3 +94,4 @@ Options:
                        [default: False]
   -m, --matchcats      Match source catalogues.
                        [default: False]
+```

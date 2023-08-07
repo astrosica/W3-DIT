@@ -33,3 +33,73 @@ Use Source Extractor to obtain tabulated photometric measurements of stars in ca
 Create final science images by stacking (e.g., median averaging) reduced science images. Science images are dithered so they are projected onto a common grid first using a simple WCS grid. This common grid is the same for all passbands for a given pointing and helps with things like cosmic rays. When stacking science images, measures the standard deviation to obtain a measure of noise across pixels. 
 
 Note: The "dupe" in several file names does not necessarily mean that they are in fact duplicates because the observation time and header information changes.
+
+## Usage
+
+Requires that images are organized in the following way:
+raw science images: <parent directory>/<date>/<images>/
+bias images: <parent directory>/<date>/<calibration folder>/<images>/
+dark images: <parent directory>/<date>/<calibration folder>/<images>/
+flat images: <parent directory>/<date>/<flat folder>/<images>/
+
+Requires that filenames are named in the following way:
+raw science images: objectname_[]-[]-[].fts
+bias images: Bias-[]-[]-[]-.fts
+dark images: Dark-[]-[]-[].fts
+flat images: AutoFlat-[]-[]-[].fts
+
+The following is done with the raw science images:
+1. dark subtracted and flat fielded
+2. astronometry.net is used to obtain accurate world coordinate system
+3. Source Extractor is used for photometry
+
+Outputs the following directories
+- :
+
+Requires the following header keys in the science images' FITS files:
+- OBJECT
+- FILTER
+- EXPTIME
+
+Requires the following software:
+    - sextractor
+    - astrometry.net
+Requires the following packages: os, re, yaml, docopt, numpy, astropy
+Requires the following files:
+    - calibration.py
+    - callastrometry.py
+
+Usage:
+main [options]
+
+Options:
+  -h, --help           Show this screen.
+                       [default: False]
+  -l, --logoutput      Generate log outputs.
+                       [default: True]
+  -v, --verbose        Generate verbose output.
+                       [default: True]
+  -g, --generate       Generate outputs.
+                       [default: True]
+  -w, --wcs            Create WCS solution via Astronomy.net.
+                       [default: False]
+  -r, --reduce         Perform data reduction.
+                       [default: False]
+  -c, --calibrate      Perform zero-point calibration.
+                       [default: False]
+  -p, --panstarrs      Use Pan-STARRS for calibration.
+                       [default: False]
+  -a, --atlas          Use ATLAS for calibration.
+                       [default: True]
+  -s, --sextractor     Run Source Extractor for calibration step.
+                       [default: False]
+  -k, --checkcal       Check the zero-point calibration.
+                       [default: False]
+  -x, --stack          Stack calibrated images.
+                       [default: False]
+  -f, --finalcalcheck  Check the zero-point calibration on stacked images.
+                       [default: False]
+  -n, --finalsexrun    Final SExtractor run on stacked images.
+                       [default: False]
+  -m, --matchcats      Match source catalogues.
+                       [default: False]

@@ -1,0 +1,60 @@
+ncores_wcs              : 6
+ncores_cal              : 6
+ncores_apass            : 6
+ncores_panstarrs        : 10
+ncores_atlas            : 10
+MULTIPROCESSING_CAL     : False
+
+parentdir               : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/"
+datadir                 : "/mnt/raid-project/hp/campbell/DIT/DITdata/"
+calfolder               : "Calibration/"
+flatfolder              : "AutoFlat/"
+objects                 : "W3_1 W3_11 W3_12 W3_13 W3_21 W3_22 W3_23 W3_31 W3_32 W3_33"
+passbands               : "i r z"
+astrometrydir           : "/opt/astrometry/0.5/data/data.astrometry.net/4200/"
+dsffdir                 : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/darksubflatfielded/"
+mastercaldir            : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/mastercalimages/"
+stackedcaldir           : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/stackedcal/"
+calibrateddir           : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/calibrated/"
+sciencedata_dsff_cutoff : 0.0
+FLAG                    : True
+flag                    : "bad"
+sciencemaskdir          : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/sciencemasks/"
+wcsdir                  : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/wcs/"
+logdir                  : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/logs/"
+apassdir                : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/apass/"
+centerRA                : 35.6
+centerDEC               : 61.7
+totalFOV                : 2.7
+panstarrsdir            : "/mnt/raid-project/hp/campbell/panstarrs/"
+panstarrscat            : "ps_box.fits"
+panstarrstrimcat        : "ps_box_trim.fits"
+panstarrsphot           : "PSF"
+atlasdir                : "/mnt/raid-project/hp/campbell/ATLAS/"
+atlascat                : "ATLASw3_pgmartin.fits"
+atlastrimcat            : "ATLASw3_pgmartin_trim.fits"
+gaiadir                 : "/mnt/raid-project/hp/campbell/gaia/"
+gaiacat                 : "gaia_ruwe_box.fits"
+mergedcatsdir           : "/mnt/raid-project/hp/campbell/mergedcats/"
+ATLASDITcat             : "ATLASw3_trim_MERGED_DIT.fts"
+
+sexdir                  : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor/"
+sexobjdir               : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor/objects/"
+sexcatdir               : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor/catalogues/"
+sexbgdir                : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor/background/"
+sexconfigdir            : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor/config/"
+
+sexcheckzpdir           : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor_checkzp/"
+sexobjcheckzpdir        : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor_checkzp/objects/"
+sexcatcheckzpdir        : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor_checkzp/catalogues/"
+sexbgcheckzpdir         : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor_checkzp/background/"
+
+sexfinalcheckzpdir      : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor_finalcheckzp/"
+sexobjfinalcheckzpdir   : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor_finalcheckzp/objects/"
+sexcatfinalcheckzpdir   : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor_finalcheckzp/catalogues/"
+sexbgfinalcheckzpdir    : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/SExtractor_finalcheckzp/background/"
+
+sexstackedcaldir        : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/stackedcal/SExtractor/"
+sexobjstackedcaldir     : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/stackedcal/SExtractor/objects/"
+sexcatstackedcaldir     : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/stackedcal/SExtractor/catalogues/"
+sexbgstackedcaldir      : "/mnt/raid-project/hp/campbell/DIT/Python/Pipeline/stackedcal/SExtractor/background/"

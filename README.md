@@ -1,37 +1,35 @@
 # W3 DIT
 
-This Python pipeline performs data reduction and calibration for DIT Photometry of W3.
+This code performs data reduction and calibration for DIT Photometry of W3 and is written by Jessica Campbell.
 
 David A. Dunlap Department of Astronomy & Astrophysics, Canadian Institute for Theoretical Astrophysics, University of Toronto
 
-## About DIT
-The Dunlap Institute Telescope (DIT) is a 1 m telescope that observed W3 from Mexico. Observing was led by Suresh Sivanandam and Nick Law. The DIT data was obtained using a 3x3 grid of pointings across the W3 field with a 10th pointing centered on KR 140. The data is organized into folders named YYYYMMDD. The plate solution was originally done with PinPoint (via header) but this is not accurate and was done again. The "dupe" in several file names does not necessarily mean that they are in fact duplicates because the observation time and header information changes (they might have different exposure times).
+## Context
+The Dunlap Institute Telescope (DIT) is a 1m telescope that observed the W3 giant molecular cloud from Mexico. Observing was led by Suresh Sivanandam and Nick Law. The DIT data was obtained using a 3x3 grid of pointings across the W3 field with a 10th pointing centered on KR 140. The data is organized into folders named YYYYMMDD and include the riz passbands. Bias measurements, dark fields, and flat fields were obtained for the use of removing instrumental artifacts through a process called data reduction.
 
 ## Data Reduction
 
-The data reductions steps are as follows:
+The data reduction steps used here are as follows:
 
 ### 1. Quality Check
-Visually inspect images and flag those that will not be used (e.g., lots of dark images have star trails). Create mask for bad pixels (e.g., very negative pixels).
+Flag problematic images that are not to be used (e.g., star trails in dark images) and create a mask for bad pixels (e.g., very negative pixels).
 
 ### 2. Astrometric Solution
-Use [Astrometry.net](astrometry.net) to obtain an astrometric solution for each science image.
+Use [Astrometry.net](astrometry.net) to obtain an astrometric solution for each science image. The plate solution was originally done with PinPoint (via header) but this was found to be inaccurate.
 
 ### 3. Bias Subtraction
-Bias creates an offset (~100s of counts) measured by the CCD before the start of th expoure that needs to be subtracted from all images. Bias measurements were made using either 10 or 20 x 0s exposures. Can (median) average all bias frames across all nights since they all have the same exposure and do not change with wavelength.
+Create a master bias frame by averaging all bias frames across all nights; they all have the same exposure (0s) and do not change with wavelength. Bias measurements create an offset (~100s of counts) measured by the CCD before the start of the exposure that needs to be subtracted from all images. 
 
 ### 4. Dark subtraction
-Dark measurements were made using either 5 or 10 x frames over a wide range in exposure time (10s, 30s, 60s, 120s, 300s). Check that dark counts are linear with exposure time. A dark-subtraction should account for the bias as well (i.e., bias is included in the dark frame). The dark frame subtracted from a science image should have the same exposure time, so should make separate master dark frames for each integration time used in science and flat field images by (median) averaging across all nights for a given exposure time. Most science images have either 5s or 120s exposure times, other dark frame exposure times might have been for the flat frames.
+Make master dark frames for each integration time by averaging across all nights for a given exposure time and subtract from science images with corresponding exposure time (either 5s or 120s). The dark frame subtracted from a science image should have the same exposure time. Dark measurements were made in sets of 5 and 10 frames over a wide range in exposure time (10s, 30s, 60s, 120s, 300s). Check that dark counts are linear with exposure time. The dark-subtraction accounts for the bias (i.e., bias is included in the dark frame). 
 
 ### 5. Flat Fielding
-The flat field measures the CCD response/sensitivity; this is not uniform and varies across the detector and as a function of wavelength. A flat field measurement is usually taken at dusk and/or dawn as it requires a high photon count (~60-70% saturation). Flat field images should be dark subtracted using a dark frame with the same exposure time. Will need a master flat frame for each passband used in science images, so create these by (median) average dark-subtracted flat field images over all nights for each passband (may need to normalize once more at the end).
-
-Normalize each flat by dividing by the median value.
+Create a master flat frame for each passband by average dark-subtracted flat field images across all nights for each passband; normalize once more at the end by dividing by the median value. The flat field images should be dark subtracted using a dark frame with the same exposure time. The flat field measures the CCD response/sensitivity; this is not uniform and varies across the detector and as a function of wavelength. A flat field measurement is usually taken at dusk and/or dawn as it requires a high photon count (~60-70% saturation). 
 
 ### 6. Calibration
+Use Source Extractor to obtain tabulated photometric measurements of stars in calibrated science images and cross-match to Pan-STARRS catalog. Fit a straight line to (Source Extractor - Pan-STARRS) vs. Pan-STARRS magnitudes to measure the zero point and slope in the data. Only use a science image if the slope is equal to zero within 3-sigma uncertainties. Verify that the zero-point is zero post-calibration.
 
-### 7. Stack Images
-Create final science images by stacking (e.g., median averaging) reduced and calibrated science images. Science images are dithered so they will need to be projected onto a common grid first (use a simple WCS grid). This common grid should be the same for all passbands for a given pointing. This will help with things like cosmic rays. When stacking science images, can measure standard deviation to obtain a measure of noise across pixels.
+### 6. Stack Images
+Create final science images by stacking (e.g., median averaging) reduced science images. Science images are dithered so they are projected onto a common grid first using a simple WCS grid. This common grid is the same for all passbands for a given pointing and helps with things like cosmic rays. When stacking science images, measures the standard deviation to obtain a measure of noise across pixels. 
 
-## Calibration
-We use Pan-STARRS data to calibrate the DIT photometry.
+Note: The "dupe" in several file names does not necessarily mean that they are in fact duplicates because the observation time and header information changes.

@@ -1,11 +1,11 @@
-# Data Reduction and Calibration for DIT Photometry of W3
+# W3 DIT
+
+This Python pipeline performs data reduction and calibration for DIT Photometry of W3.
 
 David A. Dunlap Department of Astronomy & Astrophysics, Canadian Institute for Theoretical Astrophysics, University of Toronto
 
 ## About DIT
 The Dunlap Institute Telescope (DIT) is a 1 m telescope that observed W3 from Mexico. Observing was led by Suresh Sivanandam and Nick Law. The DIT data was obtained using a 3x3 grid of pointings across the W3 field with a 10th pointing centered on KR 140. The data is organized into folders named YYYYMMDD. The plate solution was originally done with PinPoint (via header) but this is not accurate and was done again. The "dupe" in several file names does not necessarily mean that they are in fact duplicates because the observation time and header information changes (they might have different exposure times).
-
-The DIT data is hosted on the CITA server at: /mnt/raid-project/hp/campbell/DIT/DITdata
 
 ## Data Reduction
 

@@ -64,7 +64,9 @@ Requires the following header keys in the science images' FITS files:
 Requires the following software:
     - sextractor
     - astrometry.net
+    
 Requires the following packages: os, re, yaml, docopt, numpy, astropy
+
 Requires the following files:
     - calibration.py
     - callastrometry.py
